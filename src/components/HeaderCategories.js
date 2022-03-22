@@ -1,11 +1,20 @@
 import { StyleSheet, Text, View ,SafeAreaView,TouchableOpacity,Dimensions} from 'react-native'
-import React from 'react'
+import React ,{useState} from 'react'
 
 
 
 function HeaderButton (props) {
+  const [isClick, setisClick] = useState(false);
+  
+  const onClickIn=()=>{
+    setisClick(true);
+  }
+  const onClickOut=()=>{
+    setisClick(false);
+  }
+
   return (
-    <TouchableOpacity activeOpacity={0.8} style={styles.headerButtonWrapper}>
+    <TouchableOpacity onPressIn={onClickIn} onPressOut={onClickOut} activeOpacity={0.8} style={isClick?styles.headerButtonWrapperClick:styles.headerButtonWrapper}>
       <Text style={{color:"#875B4C"}}>{props.title}</Text>
     </TouchableOpacity>
   )
@@ -24,9 +33,9 @@ export default HeaderCategories
 
 const styles = StyleSheet.create({
     headerCategoriesMainWrapper:{
-        backgroundColor:"#D5BEB4",
+        backgroundColor:"#F7EFE9",
         width:"100%",
-        height:"100%",
+        height:"10%",zIndex:1000,
 
         flexDirection:"row",
         justifyContent: "space-between",
@@ -36,6 +45,12 @@ const styles = StyleSheet.create({
     },
     headerButtonWrapper:{
         backgroundColor:"#B88068",
+        padding:Dimensions.get("screen").width/39,
+        borderRadius:5
+    },
+    headerButtonWrapperClick:{
+        backgroundColor:"transparent",
+        color:"saddlebrown",
         padding:Dimensions.get("screen").width/39,
         borderRadius:5
     }
