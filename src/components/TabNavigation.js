@@ -1,21 +1,22 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View,TouchableOpacity} from 'react-native'
 import React from 'react'
+import Icon from "react-native-vector-icons/Ionicons";
 
 const TabNavigationButton=(props)=>{
   return (
-    <View>
-      <Text>{props.title}</Text>
-    </View>
+    <TouchableOpacity activeOpacity={0.4}>
+      <Icon name={props.type} color="saddlebrown" size={30}/>
+    </TouchableOpacity>
   )
 }
 
 const TabNavigation = () => {
   return (
     <View style={styles.TabNavigationWrapper}>
-      <TabNavigationButton title="button"></TabNavigationButton>
-      <TabNavigationButton title="button"></TabNavigationButton>
-      <TabNavigationButton title="button"></TabNavigationButton>
-      <TabNavigationButton title="button"></TabNavigationButton>
+      <TabNavigationButton type="home"></TabNavigationButton>
+      <TabNavigationButton type="location"></TabNavigationButton>
+      <TabNavigationButton type="cart"></TabNavigationButton>
+      <TabNavigationButton type="person"></TabNavigationButton>
     </View>
   )
 }

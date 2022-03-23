@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View ,SafeAreaView,TouchableOpacity,Dimensions} from 'react-native'
 import React ,{useState} from 'react'
+import { useNavigation } from '@react-navigation/native';
 
 
 
 function HeaderButton (props) {
   const [isClick, setisClick] = useState(false);
+  const Navigation=useNavigation();
   
   const onClickIn=()=>{
     setisClick(true);
@@ -14,7 +16,7 @@ function HeaderButton (props) {
   }
 
   return (
-    <TouchableOpacity onPressIn={onClickIn} onPressOut={onClickOut} activeOpacity={0.8} style={isClick?styles.headerButtonWrapperClick:styles.headerButtonWrapper}>
+    <TouchableOpacity onPressIn={onClickIn} onPressOut={onClickOut} onPress={()=>Navigation.navigate(props.screen)} activeOpacity={0.8} style={isClick?styles.headerButtonWrapperClick:styles.headerButtonWrapper}>
       <Text style={{color:"#875B4C"}}>{props.title}</Text>
     </TouchableOpacity>
   )
@@ -23,8 +25,8 @@ function HeaderButton (props) {
 const HeaderCategories = (props) => {
   return (
     <SafeAreaView style={styles.headerCategoriesMainWrapper}>
-      <HeaderButton title="Back"></HeaderButton>
-      <HeaderButton title="Next"></HeaderButton>
+      <HeaderButton screen="Home" title="Back"></HeaderButton>
+      <HeaderButton screen="Home" title="Next"></HeaderButton>
     </SafeAreaView>
   )
 }
