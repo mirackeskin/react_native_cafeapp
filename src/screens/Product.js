@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
+import { useRoute } from '@react-navigation/native';
 
-const Product = () => {
+const Product = (props) => {  
+  const Route=useRoute();
   return (
     <View>
-      <Text>Product</Text>
+      <Text>{Route.params.title}</Text>
     </View>
   )
 }
