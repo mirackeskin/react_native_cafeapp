@@ -22,11 +22,11 @@ const styles = StyleSheet.create({
         paddingLeft:width/39
     },
     HeaderTitleText:{
-      fontSize:width/10,
+      fontSize:height/18,
       color:"#593A30"
     },
     HeaderTitleTextBold:{
-      fontSize:width/10,
+      fontSize:height/18,
       fontWeight:'bold',
       color:"#D09777"
     }

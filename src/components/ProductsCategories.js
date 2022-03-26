@@ -8,14 +8,15 @@ const {width,height}=Dimensions.get("screen");
 
 const ProductCard=(props)=>{
   const Navigation=useNavigation();
+  const {title,price}=props;
   
   return (
-    <TouchableOpacity activeOpacity={0.6} onPress={()=>Navigation.navigate("Product",({title:"espresso"}))} style={styles.ProductCardMainWrapper}>
+    <TouchableOpacity price={props.price} activeOpacity={0.6} onPress={()=>Navigation.navigate("Product",({title,price}))} style={styles.ProductCardMainWrapper}>
         <View style={styles.ProductCardImageWrapper}>
           <Image resizeMode='stretch' source={require("../../assets/images/fincan.png")} style={styles.ProductImage}></Image>
         </View>
         <View style={styles.ProductCardContentWrapper}>
-          <Text style={styles.ProductCardText}>{props.title}</Text>
+          <Text   style={styles.ProductCardText}>{props.title}</Text>
           <Text style={{fontSize:24}}> {">"} </Text>
         </View>
 
@@ -26,11 +27,11 @@ const ProductCard=(props)=>{
 const ProductsCategories = () => {
   return (
     <ScrollView style={styles.ProductsWrapper}>
-      <ProductCard  title="Espresso"></ProductCard>
-      <ProductCard  title="Cappucino"></ProductCard>
-      <ProductCard  title="Machiato"></ProductCard>
-      <ProductCard  title="Latte"></ProductCard>
-      <ProductCard  title="Turkish Coffee"></ProductCard>      
+      <ProductCard price={14.99} title="Espresso"></ProductCard>
+      <ProductCard price={4.99} title="Cappucino"></ProductCard>
+      <ProductCard price={12.99} title="Machiato"></ProductCard>
+      <ProductCard price={6.99} title="Latte"></ProductCard>
+      <ProductCard price={9.99} title="Turkish Coffee"></ProductCard>      
     </ScrollView>
   )
 }
@@ -67,9 +68,16 @@ const styles = StyleSheet.create({
       alignItems:"center",
       justifyContent:"space-between",
       paddingLeft:width/39,
-      paddingRight:width/39
+      paddingRight:width/39,
     },
     ProductCardText:{
-      fontSize:20
+      fontSize:20,
+      flex:1 //yazı sığmadığında alt satıra iner
     }
 })
+
+
+
+
+
+
