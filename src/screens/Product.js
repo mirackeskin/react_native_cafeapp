@@ -14,7 +14,7 @@ const Product = (props) => {
     <SafeAreaView style={styles.ProductMainWrapper}>
       <ProductHead headTitle={Route.params.title}></ProductHead>
       <ProductImage></ProductImage>
-      <ProductBody price={Route.params.price} ></ProductBody>
+      <ProductBody productTitle={Route.params.title} price={Route.params.price} ></ProductBody>
     </SafeAreaView>
   )
 }

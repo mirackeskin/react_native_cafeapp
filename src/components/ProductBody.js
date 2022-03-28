@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View,Dimensions,TouchableOpacity} from 'react-native'
-import React,{ useState } from 'react'
+import { StyleSheet, Text, View,Dimensions,TouchableOpacity,Image,} from 'react-native'
+import React,{ useState,useEffect } from 'react'
 
 
 const {width,height}=Dimensions.get("screen");
@@ -34,7 +34,7 @@ const ProductPriceCard=(props)=>{
   return (
     <View style={styles.ProductPriceCardWrapper}>
       <View style={styles.ProductPriceCardLeft}>
-        <Text style={{fontSize:width/20,color:"#875B4C"}}>Espresso</Text>
+        <Text style={{fontSize:width/20,color:"#875B4C"}}>{props.title}</Text>
         <Text style={{fontSize:width/14,fontWeight:"bold",color:"#D09777"}}>{price}£</Text>
       </View>
       <View style={styles.ProductPriceCardRight}>
@@ -49,8 +49,37 @@ const ProductPriceCard=(props)=>{
 const ProductSizeCard=()=>{
   return (
     <View style={styles.ProductSizeCardWrapper}>
+      <View style={styles.sizeCardTop}>
+        <Text style={{fontSize:width/19,color:"#875B4C"}}>Size</Text>
+      </View>
+      <View style={styles.sizeCardBottom}>
+        
+        <View style={styles.leftBox}>
+          <ProductSize size="small"></ProductSize>
+          <ProductSize size="medium"></ProductSize>
+          <ProductSize size="large"></ProductSize>
+        </View>
 
+        <View style={{width:"40%",height:"100%"}}></View>
+
+      </View>
     </View>
+  )
+}
+
+const ProductSize=(props)=>{
+  const [active,setActive]=useState(false);
+  const {size}=props;
+  
+  const pressSize=()=>{
+    setActive(!active);
+  }  
+  
+  return (
+    <TouchableOpacity activeOpacity={0.5} onPress={pressSize} style={{width:width*15/100,height:width/5,alignItems:"center",opacity:active?1:0.5}}>
+      <Image style={{width:"100%",height:"75%"}} resizeMode='stretch' source={require("../../assets/images/fincan.png")}></Image>
+      <Text style={{fontSize:12}}>{size}</Text>
+    </TouchableOpacity >
   )
 }
 
@@ -73,7 +102,7 @@ const AddToCart=()=>{
 const ProductBody = (props) => {
   return (
     <View style={styles.ProductBody}>
-      <ProductPriceCard price={props.price}></ProductPriceCard>
+      <ProductPriceCard title={props.productTitle} price={props.price}></ProductPriceCard>
       <ProductSizeCard></ProductSizeCard>
       <ProductExtras></ProductExtras>
       <AddToCart></AddToCart>
@@ -145,5 +174,26 @@ const styles = StyleSheet.create({
       backgroundColor:"#F7EFE9",
       flexGrow:1
       
+    },
+    sizeCardTop:{
+      backgroundColor:"#F7EFE9",
+      width:"100%",
+      height:"25%",
+      paddingLeft:width/39
+    },
+    sizeCardBottom:{
+      flexDirection:"row",
+      justifyContent:"flex-start",
+      alignItems:"center",
+      height:"75%",
+      flexGrow:1,paddingLeft:width/39
+    },
+    leftBox:{
+      flexDirection:"row",
+      justifyContent:"space-between",
+      alignItems:"center",
+      height:"75%",
+      width:"60%",
+      flexGrow:1,
     }
 })
