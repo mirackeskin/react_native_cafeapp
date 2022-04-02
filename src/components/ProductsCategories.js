@@ -31,7 +31,8 @@ const ProductsCategories = () => {
       <ProductCard price={4.99} title="Cappucino"></ProductCard>
       <ProductCard price={12.99} title="Machiato"></ProductCard>
       <ProductCard price={6.99} title="Latte"></ProductCard>
-      <ProductCard price={9.99} title="Turkish Coffee"></ProductCard>      
+      <ProductCard price={9.99} title="Turkish Coffee"></ProductCard>
+      <ProductCard price={9.99} title="Americano"></ProductCard>      
     </ScrollView>
   )
 }

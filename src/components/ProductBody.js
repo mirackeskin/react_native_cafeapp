@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View,Dimensions,TouchableOpacity,Image,} from 'react-native'
+import { StyleSheet, Text, View,Dimensions,TouchableOpacity,Image,Alert} from 'react-native'
 import React,{ useState,useEffect } from 'react'
+import {useNavigation } from '@react-navigation/native';
 
 
 const {width,height}=Dimensions.get("screen");
+
 
 const CountButton=(props)=>{ 
 
@@ -83,18 +85,20 @@ const ProductSize=(props)=>{
   )
 }
 
-const ProductExtras=()=>{
-  return (
-    <View style={styles.ProductExtrasWrapper}>
-
-    </View>
-  )
+const addToCard=()=>{ 
+    Alert.alert("Confirmation","Do you confirm your order?",[{text:"Yes!",onPress:()=>console.log("asa")},{text:"No!"}])
+      
 }
 
 const AddToCart=()=>{
+  
   return (
     <View style={styles.AddToCartWrapper}>
-
+      <View style={{width:"50%"}}>
+        <TouchableOpacity onPress={addToCard} activeOpacity={0.8} style={{backgroundColor:"#B88068",padding:width/39,alignItems:"center",borderRadius:10}}>
+          <Text style={{fontSize:width/19}}>Add to Card</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
@@ -104,7 +108,7 @@ const ProductBody = (props) => {
     <View style={styles.ProductBody}>
       <ProductPriceCard title={props.productTitle} price={props.price}></ProductPriceCard>
       <ProductSizeCard></ProductSizeCard>
-      <ProductExtras></ProductExtras>
+      
       <AddToCart></AddToCart>
     </View>
   )
@@ -162,18 +166,15 @@ const styles = StyleSheet.create({
       backgroundColor:"#F7EFE9",
       flexGrow:1   
     },
-    ProductExtrasWrapper:{
-      width:"100%",
-      height:"25%",
-      backgroundColor:"#F7EFE9",
-      flexGrow:1 
-    },
     AddToCartWrapper:{
       width:"100%",
-      height:"25%",
+      height:"50%",
       backgroundColor:"#F7EFE9",
-      flexGrow:1
-      
+      flexGrow:1,
+      flexDirection:"row",
+      alignItems:"center",
+      justifyContent:"center"
+
     },
     sizeCardTop:{
       backgroundColor:"#F7EFE9",
